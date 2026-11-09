@@ -1,0 +1,3 @@
+html, body, #map { margin: 0; height: 100%; }
+.maplibregl-popup-content table { border-collapse: collapse; font-size: 12px; }
+.maplibregl-popup-content th { text-align: left; padding-right: 8px; color: #666; font-weight: normal; }

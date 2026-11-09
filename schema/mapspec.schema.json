@@ -1,0 +1,228 @@
+{
+  "$defs": {
+    "Channel": {
+      "additionalProperties": false,
+      "description": "Un seul canal visuel. 1 valeur fixe pr le moment. Plus tard : un champ + une échelle, etc.",
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "title": "Channel",
+      "type": "object"
+    },
+    "Encoding": {
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Channel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "size": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Channel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "opacity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Channel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "Encoding",
+      "type": "object"
+    },
+    "Layer": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "data": {
+          "title": "Data",
+          "type": "string"
+        },
+        "mark": {
+          "const": "point",
+          "default": "point",
+          "title": "Mark",
+          "type": "string"
+        },
+        "encoding": {
+          "$ref": "#/$defs/Encoding"
+        },
+        "popup": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Popup"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "data"
+      ],
+      "title": "Layer",
+      "type": "object"
+    },
+    "Popup": {
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Title"
+        },
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Fields",
+          "type": "array"
+        }
+      },
+      "required": [
+        "fields"
+      ],
+      "title": "Popup",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "geojson",
+          "default": "geojson",
+          "title": "Type",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "View": {
+      "additionalProperties": false,
+      "properties": {
+        "center": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Center",
+          "type": "array"
+        },
+        "zoom": {
+          "default": 5,
+          "title": "Zoom",
+          "type": "number"
+        },
+        "basemap": {
+          "default": "positron",
+          "enum": [
+            "positron",
+            "liberty",
+            "bright"
+          ],
+          "title": "Basemap",
+          "type": "string"
+        }
+      },
+      "required": [
+        "center"
+      ],
+      "title": "View",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "0.1",
+      "default": "0.1",
+      "title": "Version",
+      "type": "string"
+    },
+    "view": {
+      "$ref": "#/$defs/View"
+    },
+    "data": {
+      "additionalProperties": {
+        "$ref": "#/$defs/Source"
+      },
+      "default": {},
+      "title": "Data",
+      "type": "object"
+    },
+    "layers": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Layer"
+      },
+      "title": "Layers",
+      "type": "array"
+    }
+  },
+  "required": [
+    "view"
+  ],
+  "title": "MapSpec",
+  "type": "object"
+}

@@ -1,0 +1,32 @@
+# --- Python ---
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Node / Vite ---
+node_modules/
+ts/dist/
+*.local
+npm-debug.log*
+
+# --- Données ---
+# Données brutes téléchargées (volumineuses, re-téléchargeables)
+data/raw/
+# Données préparées : régénérées par data/prepare_*.py
+ts/public/data/*.geojson
+
+# Les specs (ts/public/specs/) et le schéma (schema/) restent versionnés :
+# ce sont des exemples du contrat JSON, utiles pour suivre l'évolution de la grammaire.
+
+# --- Environnement et éditeurs ---
+.env
+.env.*
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

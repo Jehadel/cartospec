@@ -1,0 +1,41 @@
+{
+  "version": "0.1",
+  "view": {
+    "center": [
+      5.72,
+      45.19
+    ],
+    "zoom": 9.0,
+    "basemap": "positron"
+  },
+  "data": {
+    "stations": {
+      "type": "geojson",
+      "url": "/data/carburants_38.geojson"
+    }
+  },
+  "layers": [
+    {
+      "id": "stations",
+      "data": "stations",
+      "mark": "point",
+      "encoding": {
+        "color": {
+          "value": "#d62728"
+        },
+        "size": {
+          "value": 5.0
+        }
+      },
+      "popup": {
+        "title": "ville",
+        "fields": [
+          "adresse",
+          "gazole_prix",
+          "sp95_prix",
+          "e10_prix"
+        ]
+      }
+    }
+  ]
+}
